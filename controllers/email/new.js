@@ -34,6 +34,19 @@ exports.postEmail = async (req, res, next) => {
 	try {
 		const start = performance.now();
 
+		//check if email already exists
+		const emailExists = await Email.findOne({ email });
+
+		//if so return suceess message to user
+		if (emailExists) {
+			logger.warn(`Email already exists in CreateEmail Controller`);
+			return res.status(200).json({
+				success: true,
+				message: "You are already subscribed to our newsletter",
+				data: emailExists,
+			});
+		}
+
 		//create the email
 		const newEmail = new Email({
 			email,

@@ -19,8 +19,7 @@ const logger = require("../../utils/logger");
 // controller
 exports.createFlight = async (req, res, next) => {
 	const {
-		airline,
-		aircraft,
+		airplane,
 		departureTime,
 		arrivalTime,
 		status,
@@ -31,8 +30,7 @@ exports.createFlight = async (req, res, next) => {
 	//Step: validate the request body
 	let errors = [];
 
-	if (!airline) errors.push("Flight airline is required");
-	if (!aircraft) errors.push("Flight aircraft is required");
+	if (!airplane) errors.push("Flight airline is required");
 	if (!departureTime) errors.push("Flight departure time is required");
 	if (!arrivalTime) errors.push("Flight arrival time is required");
 	if (!status) errors.push("Flight status is required");
@@ -52,8 +50,7 @@ exports.createFlight = async (req, res, next) => {
 
 		//create the flight
 		const flight = new Flight({
-			airline,
-			aircraft,
+			airplane,
 			departureTime,
 			arrivalTime,
 			status,
