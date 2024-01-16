@@ -14,6 +14,23 @@ const SchemaOptions = {
 	optimisticConcurrency: true,
 };
 
+//airplane schema
+const AirplaneSchema = new Schema(
+	{
+		airline: {
+			type: String,
+			maxLength: [250, "Maximum characters required for airline is 250"],
+		},
+		aircraft: {
+			type: String,
+			maxLength: [250, "Maximum characters required for airline is 250"],
+		},
+		regNo: {
+			type: Number,
+			maxLength: [250, "Maximum characters required for airline is 250"],
+		},
+	},
+);
 
 //departure subschema
 const DepartureSchema = new Schema(
@@ -104,18 +121,7 @@ const DestinationAirportSchema = new Schema(
 //the schema
 const FlightSchema = new Schema(
 	{
-		airline: {
-			type: String,
-			maxLength: [100, "Maximum characters required for airline is 100"],
-			trim: true,
-			index: true,
-		},
-		aircraft: {
-			type: String,
-			maxLength: [100, "Maximum characters required for aircraft is 100"],
-			trim: true,
-			index: true,
-		},
+		airplane: AirplaneSchema,
 		departureTime: DepartureSchema,
 		arrivalTime: ArrivalSchema,
 		status: StatusSchema,
