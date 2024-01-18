@@ -82,19 +82,13 @@ exports.fetchFlightByAirport = async (req, res, next) => {
 	const { originAirport, destinationAirport } = req.query;
 
 	//Step: validate the request body
-	let errors = [];
-
-	if (!originAirport) errors.push("Flight origin airport is required");
-	if (!destinationAirport)
-		errors.push("Flight destination airport is required");
-
-	if (errors.length > 0) {
+	if (!originAirport || !destinationAirport) {
+		const errorMessage =
+			"Flight origin and destination airports are required";
 		logger.warn(
-			`Validation error in FetchFlightByAirport Controller: ${errors.join(
-				", "
-			)}`
+			`Validation error in fetchFlightByAirport: ${errorMessage}`
 		);
-		return next(new ErrorResponse(errors.join(", "), 400));
+		return next(new ErrorResponse(errorMessage, 400));
 	}
 
 	try {
@@ -102,11 +96,13 @@ exports.fetchFlightByAirport = async (req, res, next) => {
 
 		//find all flights
 		const flights = await Flight.find({
-			originAirport: originAirport,
-			destinationAirport: destinationAirport,
+			"originAirport.name": originAirport,
+			"destinationAirport.name": destinationAirport,
 		})
 			.lean()
 			.sort({ createdAt: -1 });
+
+			console.log("flights", flights)
 
 		//return response to user
 		logger.info(

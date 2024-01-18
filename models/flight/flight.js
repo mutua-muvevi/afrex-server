@@ -26,7 +26,7 @@ const AirplaneSchema = new Schema(
 			maxLength: [250, "Maximum characters required for airline is 250"],
 		},
 		regNo: {
-			type: Number,
+			type: String,
 			maxLength: [250, "Maximum characters required for airline is 250"],
 		},
 	},
