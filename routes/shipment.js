@@ -7,7 +7,6 @@ const checkUserExistence = require("../middlewares/checkuser");
 
 // controller inputs
 const { createShipment } = require("../controllers/shipment/new");
-console.log("Shipment Error Here")
 const { editShipment } = require("../controllers/shipment/edit");
 const {
 	fetchAllShipments,

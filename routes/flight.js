@@ -40,6 +40,10 @@ router.put(
 	checkUserExistence,
 	editFlight
 );
+router.get(
+	"/fetch/airport",
+	fetchFlightByAirport
+)
 
 //export
 module.exports = router;
