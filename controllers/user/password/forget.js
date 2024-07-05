@@ -51,7 +51,7 @@ exports.forgotPassword = async (req, res, next) => {
 		await user.save();
 
 		// Step 4: Construct password reset URL
-		const resetUrl = `${process.env.CLIENT_URL}/auth/resetpassword/${resetToken}`;
+		const resetUrl = `${process.env.CLIENT_URL}/auth/new-password/${resetToken}`;
 
 		const emailHTML = `
 			<h1>You have requested a password reset</h1>

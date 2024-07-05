@@ -1,5 +1,5 @@
 {
-  "name": "skydive-server",
+  "name": "afrex-bridge-connections-server",
 	"version": "1.0.0",
 	"main": "index.js",
 	"license": "MIT",
@@ -30,7 +30,7 @@
     "xss-clean": "^0.1.4"
   },
   "engines": {
-		"node": "16.x",
+		"node": "20.x",
 		"yarn": "1.x"
 	},
 	"scripts": {
