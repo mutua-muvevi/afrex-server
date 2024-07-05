@@ -100,7 +100,7 @@ exports.editStorage = async (req, res, next) => {
 			track_number,
 		}
 
-		const updatedStorage = await Storage.findById(
+		const updatedStorage = await Storage.findByIdAndUpdate(
 			storageID,
 			update,
 			{ new: true }
