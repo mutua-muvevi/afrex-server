@@ -66,6 +66,8 @@ exports.editStorage = async (req, res, next) => {
 	try {
 		const start = performance.now();
 
+		logger.info(`Editing Storage..., ${JSON.stringify(req.body)}`)
+
 		//find the storage
 		const storage = await Storage.findById(storageID)
 
@@ -103,6 +105,8 @@ exports.editStorage = async (req, res, next) => {
 			update,
 			{ new: true }
 		)
+
+		logger.info(`Updated Storage: ${JSON.stringify(updatedStorage)}`)
 
 		// send response to storage
 		res.status(201).json({
