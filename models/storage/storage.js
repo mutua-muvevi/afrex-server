@@ -37,18 +37,18 @@ const AcceptanceSchema = new Schema({
 
 		},
 	}),
-	to: new Schema({
-		date: {
-			type: String,
+	// to: new Schema({
+	// 	date: {
+	// 		type: String,
 
 
-		},
-		time: {
-			type: String,
+	// 	},
+	// 	time: {
+	// 		type: String,
 
 
-		},
-	}),
+	// 	},
+	// }),
 })
 
 const OwnerSchema = new Schema({
