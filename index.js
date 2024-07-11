@@ -4,6 +4,8 @@
 require("dotenv").config({ path: "./config.env" });
 const express = require("express");
 
+const logger = require("./utils/logger")
+
 const corsMiddleware = require("./config/cors");
 const helmetMiddleware = require("./config/helmet");
 const compressionMiddleware = require("./config/compression");
@@ -47,7 +49,7 @@ app.use(errorHandler);
 const PORT = process.env.PORT || 5000;
 
 //listen to the port
-app.listen(PORT, () => logger.info(`Server started on port ${PORT}`));
+app.listen(PORT, () => logger.info(`Server running on port ${PORT}`));
 
 // process termination after unhandles promise rejection
 process.on("unhandledRejection", (error, promise) => {
