@@ -28,6 +28,7 @@ const logFormat = format.combine(
 const consoleTransport = new transports.Console({
 	format: logFormat,
 	level: "info",
+	handleExceptions: true
 });
 
 const fileTransport = new transports.File({

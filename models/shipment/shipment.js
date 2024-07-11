@@ -31,6 +31,8 @@ const ItemSchema = new Schema({
 		type: Number
 	},
 
+}, {
+	timestamps: true
 });
 
 //the event subschema
@@ -95,5 +97,6 @@ const Shipmentschema = new Schema({
 
 //the model
 const Shipment = mongoose.model("Shipment", Shipmentschema);
+
 
 module.exports = Shipment;
