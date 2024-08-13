@@ -28,7 +28,9 @@ const AirplaneSchema = new Schema(
 		regNo: {
 			type: String,
 			maxLength: [250, "Maximum characters required for airline is 250"],
+			required: true,
 		},
+
 	},
 );
 
@@ -45,7 +47,6 @@ const DepartureSchema = new Schema(
 		},
 		timezone: {
 			type: String,
-			required: true,
 		},
 	}
 );
@@ -63,7 +64,6 @@ const ArrivalSchema = new Schema(
 		},
 		timezone: {
 			type: String,
-			required: true,
 		},
 	}
 );
@@ -73,11 +73,9 @@ const StatusSchema = new Schema(
 	{
 		title: {
 			type: String,
-			required: true,
 		},
 		description: {
 			type: String,
-			required: true,
 		}
 	},
 );
@@ -121,6 +119,11 @@ const DestinationAirportSchema = new Schema(
 //the schema
 const FlightSchema = new Schema(
 	{
+		ref_number: {
+			type: String,
+			maxLength: [250, "Maximum characters required for airline is 250"],
+			required: true,
+		},
 		airplane: AirplaneSchema,
 		departureTime: DepartureSchema,
 		arrivalTime: ArrivalSchema,

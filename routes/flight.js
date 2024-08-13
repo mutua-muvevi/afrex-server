@@ -11,6 +11,7 @@ const {
 	fetchFlights,
 	fetchFlightByID,
 	fetchFlightByAirport,
+	fetchFlightByRefNumber,
 } = require("../controllers/flight/fetch");
 const { deleteFlight } = require("../controllers/flight/delete");
 const { editFlight } = require("../controllers/flight/edit");
@@ -43,6 +44,11 @@ router.put(
 router.get(
 	"/fetch/airport",
 	fetchFlightByAirport
+)
+
+router.get(
+	"/fetch/ref_number/:refNumber",
+	fetchFlightByRefNumber
 )
 
 //export
