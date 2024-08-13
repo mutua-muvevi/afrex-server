@@ -19,6 +19,7 @@ const logger = require("../../utils/logger");
 // controller
 exports.createFlight = async (req, res, next) => {
 	const {
+		ref_number,
 		airplane,
 		departureTime,
 		arrivalTime,
@@ -33,7 +34,7 @@ exports.createFlight = async (req, res, next) => {
 	if (!airplane) errors.push("Flight airline is required");
 	if (!departureTime) errors.push("Flight departure time is required");
 	if (!arrivalTime) errors.push("Flight arrival time is required");
-	if (!status) errors.push("Flight status is required");
+	// if (!status) errors.push("Flight status is required");
 	if (!originAirport) errors.push("Flight origin airport is required");
 	if (!destinationAirport)
 		errors.push("Flight destination airport is required");
@@ -47,6 +48,16 @@ exports.createFlight = async (req, res, next) => {
 
 	try {
 		const start = performance.now();
+
+		//check if ref number already exists
+		const refNumberExists = await Flight.findOne({
+			ref_number: ref_number,
+		});
+
+		if (refNumberExists) {
+			logger.warn(`Flight already exists in CreateFlight Controller`);
+			return next(new ErrorResponse("Flight with this reference number already exists", 409));
+		}
 
 		//create the flight
 		const flight = new Flight({
