@@ -165,3 +165,48 @@ exports.fetchFlightByID = async (req, res, next) => {
 		next(err);
 	}
 };
+
+//fetch flight by ref number
+exports.fetchFlightByRefNumber = async (req, res, next) => {
+	const { refNumber } = req.params;
+
+	//Step: validate the request body
+	let errors = [];
+
+	if(!refNumber) errors.push("Flight ref number is required");
+
+	if (errors.length > 0) {
+		logger.warn(
+			`Validation error in FetchFlightByRefNumber Controller: ${errors.join(
+				", "
+			)}`
+		);
+		return next(new ErrorResponse(errors.join(", "), 400));
+	}
+
+	try {
+		const start = performance.now();
+
+		const flight = await Flight.findOne({
+			refNumber: refNumber,
+		}).lean();
+
+		if (!flight) {
+			logger.warn(`Flight not found in FetchFlightByRefNumber Controller`);
+			return next(new ErrorResponse("Flight not found", 404));
+		}
+
+		//return response to user
+		logger.info(
+			`Flight fetched successfully in ${performance.now() - start}ms`
+		);
+		res.status(200).json({
+			success: true,
+			message: "Flight fetched successfully",
+			data: flight,
+		});
+	} catch (error) {
+		logger.error(`Error in FetchFlightByID Controller: ${err.message}`);
+		next(err);
+	}
+}

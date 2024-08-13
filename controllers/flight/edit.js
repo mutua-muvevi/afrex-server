@@ -21,6 +21,7 @@ const mongoose = require("mongoose");
 exports.editFlight = async (req, res, next) => {
 	const { flightID } = req.params;
 	const {
+		ref_number,
 		airplane,
 		departureTime,
 		arrivalTime,
@@ -41,9 +42,11 @@ exports.editFlight = async (req, res, next) => {
 
 	try {
 		const start = performance.now();
+		console.log("Airplane value", airplane)
 
 		//find and update the flight
 		const flight = await Flight.findByIdAndUpdate(flightID, {
+			ref_number,
 			airplane,
 			departureTime,
 			arrivalTime,

@@ -50,6 +50,7 @@ exports.createFlight = async (req, res, next) => {
 
 		//create the flight
 		const flight = new Flight({
+			ref_number,
 			airplane,
 			departureTime,
 			arrivalTime,
