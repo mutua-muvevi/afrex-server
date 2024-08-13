@@ -188,8 +188,10 @@ exports.fetchFlightByRefNumber = async (req, res, next) => {
 		const start = performance.now();
 
 		const flight = await Flight.findOne({
-			refNumber: refNumber,
+			ref_number: refNumber,
 		}).lean();
+		// console.log("flight", flight)
+		// console.log("ref Number", refNumber)
 
 		if (!flight) {
 			logger.warn(`Flight not found in FetchFlightByRefNumber Controller`);
